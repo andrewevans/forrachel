@@ -11,9 +11,15 @@
     </b-card>
 
     <b-card title="Origin" style="max-width: 20rem;" class="mb-2">
+      <div>
+        <input
+          v-model="origin"
+          type="number"
+          step="10">
+      </div>
       <b-card-text>
         <b-input-group prepend="0" :append="`${maxWidth}`" class="mt-3">
-          <b-form-input v-model="origin" type="range" min="0" :max="`${maxWidth}`"></b-form-input>
+          <b-form-input v-model="origin" type="range" min="0" :max="`${maxWidth}`" step="10"></b-form-input>
         </b-input-group>
       </b-card-text>
     </b-card>

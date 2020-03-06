@@ -1,16 +1,22 @@
 <template>
-  <div class="fib-lines"> ctxes {{ ctxes }}
-    <div class="row">
-      <div
-        v-for="(canvas, i) in canvases"
-        :key="i"
-        class="col-md-2">{{ canvas.id }}
-        <line-set :canvas="canvas" :ctx="ctxes[i]"></line-set>
+  <div class="fib-lines">
+    <div class="canvas-controls">
+      <div class="row">
+        <div class="col-md-2">
+          <button
+            @click="addLineSet()"
+            class="add-set btn btn-primary">
+            Add Set
+          </button>
+        </div>
       </div>
-      <div
-        @click="addLineSet()"
-        class="col-md-2">
-        Add Set
+      <div class="line-sets row">
+        <div
+          v-for="(canvas, i) in canvases"
+          :key="i"
+          class="col-md-2">
+          <line-set :canvas="canvas" :ctx="ctxes[i]"></line-set>
+        </div>
       </div>
     </div>
 
@@ -83,5 +89,8 @@
       display: block;
       background: transparent;
     }
+  }
+  .add-set {
+    margin: 0 2em 2em 2em;
   }
 </style>

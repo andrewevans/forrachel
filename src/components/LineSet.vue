@@ -48,13 +48,42 @@
       </b-card-text>
     </b-card>
 
-    <b-card v-if="false" title="Set Details" style="max-width: 20rem;" class="mb-2">
-      <b-card-text>
-        <div>Colors: <pre>{{ colors }}</pre></div>
-        <div>Origin: <pre>{{ origin }}</pre></div>
-        <div>Direction: <pre>{{ direction }}</pre></div>
-        <div>Unit: <pre>{{ unit }}</pre></div>
-        <div>Algorithm: <pre>{{ algorithm }}</pre></div>
+    <b-card
+      no-body
+      @click="toggleDetails = !toggleDetails"
+      :class="{
+        'toggle-stats': true,
+        'toggle-stats-collapse': toggleDetails,
+      }"
+      style="max-width: 20rem;"
+      class="mb-2">
+      <b-card-body>
+        <h4>
+          {{ (toggleDetails ? 'Hide Stats' : 'Show Stats') }}
+          <b-icon :icon="(toggleDetails ? 'dash' : 'plus')"></b-icon>
+        </h4>
+      </b-card-body>
+      <b-card-text v-if="toggleDetails" >
+        <div class="row">
+          <div class="col-md-12">Colors</div>
+          <div class="col-md-12"><pre>{{ colors }}</pre></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">Origin</div>
+          <div class="col-md-12"><pre>{{ origin }}</pre></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">Direction</div>
+          <div class="col-md-12"><pre>{{ direction }}</pre></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">Unit</div>
+          <div class="col-md-12"><pre>{{ unit }}</pre></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">Algorithm</div>
+          <div class="col-md-12"><pre>{{ algorithm }}</pre></div>
+        </div>
       </b-card-text>
     </b-card>
   </div>
@@ -65,6 +94,7 @@
     props: ['canvas', 'ctx'],
     data() {
       return {
+        toggleDetails: false,
         colors: [
           'black', // Default colors
         ],
@@ -164,3 +194,9 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  .toggle-stats {
+    cursor: pointer;
+  }
+</style>
